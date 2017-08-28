@@ -13,7 +13,12 @@ const auth = require('./auth/index');
 
 const authMiddleware = require('./auth/middleware')
 
-app.use(cors());
+app.use(cors({
+  origin: process.env.CORS_ORIGIN,
+  credentials: true,
+  methods: "GET,PUT,POST,DELETE",
+  preflightContinue: false
+}));
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
